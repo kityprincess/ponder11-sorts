@@ -18,7 +18,21 @@
 template <class T>
 void sortHeap(T array[], int num)
 {
+   
+}
 
+template <class T>
+void percolate_down(T array[], int r, int n)
+{
+   int child = 2 * r;
+   while (r <= n)
+   {
+      if (child < n && array[child] < array[child + 1])
+         child++;
+
+      if (array[r] < array[c])
+
+   }
 }
 
 
