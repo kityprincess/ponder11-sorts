@@ -408,7 +408,7 @@ void BST<T> :: insertInternal(const T & in_value, BinaryNode<T> * & in_subtree, 
          throw "ERROR: Unable to allocate a node";
       }
    }
-   else if (in_value <= in_subtree->data)
+   else if (!(in_value > in_subtree->data))
       insertInternal(in_value, in_subtree->pLeft, in_subtree);
    else if (in_value > in_subtree->data)
       insertInternal(in_value, in_subtree->pRight, in_subtree);
