@@ -9,7 +9,6 @@
 *    submit your program, this should not be changed in any way.  That being
 *    said, you may need to modify this once or twice to get it to work.
 ************************************************************************/
-#define TEST
 
 #include <iostream>        // for CIN and COUT
 #include <iomanip>         // for SETW
@@ -210,9 +209,6 @@ void testIndividualSorts(int choice)
    // prepare the array
    int array[] =
    {
-#ifdef TEST
-      5, 3, 4, 1, 2, 6, 8, 7, 10, 11
-#else
       889, 192, 528, 675, 154, 746, 562, 482, 448, 842, 929, 330, 615, 225,
       785, 577, 606, 426, 311, 867, 773, 775, 190, 414, 155, 771, 499, 337,
       298, 242, 656, 188, 334, 184, 815, 388, 831, 429, 823, 331, 323, 752,
@@ -221,7 +217,6 @@ void testIndividualSorts(int choice)
       809, 227, 759, 474, 965, 689, 825, 433, 224, 601, 112, 631, 255, 518,
       177, 224, 131, 446, 591, 882, 913, 201, 441, 673, 997, 137, 195, 281,
       563, 151,
-#endif
    };
    int size = sizeof(array) / sizeof(array[0]);
 

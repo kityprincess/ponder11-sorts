@@ -10,6 +10,15 @@
 
 #ifndef SORT_HEAP_H
 #define SORT_HEAP_H
+#define GET_CHILD(x) (x * 2)
+#define GET_SIBLING(x) (x + 1)
+#define GET_PARENT(x) (x / 2)
+
+template <class T>
+void heapify(T array[], int lastIndex);
+
+template <class T>
+void percolate_down(T array[], int root, int lastIndex);
 
 /*****************************************************
  * SORT HEAP
@@ -23,9 +32,9 @@ void sortHeap(T array[], int num)
    for (int i = 1; i <= num; i++)
       sorted[i] = array[i - 1];
 
-   heapify(sorted, num + 1);
+   heapify(sorted, num);
 
-   for (int i = num; i > 1; --i)
+   for (int i = num; i > 2; --i)
    {
       T temp = sorted[i];
       sorted[i] = sorted[1];
@@ -39,35 +48,54 @@ void sortHeap(T array[], int num)
    delete[] sorted;
 }
 
+
+/*****************************************************
+* HEAPIFY
+* Rearrange array into max heap order
+****************************************************/
 template <class T>
-void heapify(T array[], int n)
+void heapify(T array[], int lastIndex)
 {
-   for (int r = n / 2; r >= 1; --r)
+   for (int root = GET_PARENT(lastIndex); root >= 1; --root)
    {
-      percolate_down(array, r, n);
+      percolate_down(array, root, lastIndex);
    }
 }
 
+
+/*****************************************************
+* PERCOLATE_DOWN
+* Move an item down to its proper order in the heap
+****************************************************/
 template <class T>
-void percolate_down(T array[], int r, int n)
+void percolate_down(T array[], int root, int lastIndex)
 {
-   int c = 2 * r;
-   while (r <= n)
+   // Get the left child of the item
+   int child = GET_CHILD(root);
+   while (root <= lastIndex)
    {
-      if (c < n && array[c + 1] > array[c])
-         c++;
-      else if (c >= n)
+      // If the right child is larger, use that instead
+      if (child < lastIndex && array[GET_SIBLING(child)] > array[child])
+         child = GET_SIBLING(child);
+      // If we happen to be looking at a child index that's
+      // too large, we're done; the root's moved down as far
+      // as it can go
+      else if (child >= lastIndex)
          break;
 
-      if (array[c] > array[r])
+      // If the child is larger than the root
+      if (array[child] > array[root])
       {
-         T temp = array[c];
-         array[c] = array[r];
-         array[r] = temp;
-         r = c;
-         c *= 2;
+         // Swap them
+         T temp = array[child];
+         array[child] = array[root];
+         array[root] = temp;
+         // Get the root's new location
+         root = child;
+         // Grab it's new left child (it's prior grandchild)
+         child = GET_CHILD(root);
       }
-      else
+      else // Otherwise, we're done
          break;
    }
 }
