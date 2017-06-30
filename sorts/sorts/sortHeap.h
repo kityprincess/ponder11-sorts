@@ -10,15 +10,23 @@
 
 #ifndef SORT_HEAP_H
 #define SORT_HEAP_H
-#define GET_CHILD(x) (x * 2)
-#define GET_SIBLING(x) (x + 1)
-#define GET_PARENT(x) (x / 2)
+
+// The following macros perform common operations to help navigate around
+// the tree
+#define GET_CHILD(x) (x * 2) // Gets the ID for a child of a given element
+#define GET_SIBLING(x) (x + 1) // Gets the ID for the sibling of a given element
+#define GET_PARENT(x) (x / 2) // Gets the ID for the parent of a given element
+#define IDX(x) (x - 1) // Translates an ID into the appropriate index into an array
+#define ITEM_AT(a, x) (a[IDX(x)]) // Looks up an item by ID from an array
 
 template <class T>
 void heapify(T array[], int lastIndex);
 
 template <class T>
 void percolate_down(T array[], int root, int lastIndex);
+
+template <class T>
+void swap(T array[], int a, int b);
 
 /*****************************************************
  * SORT HEAP
@@ -27,27 +35,28 @@ void percolate_down(T array[], int root, int lastIndex);
 template <class T>
 void sortHeap(T array[], int num)
 {
-   T * sorted = new T[num + 1];
-   
-   for (int i = 1; i <= num; i++)
-      sorted[i] = array[i - 1];
-
-   heapify(sorted, num);
+   heapify(array, num);
 
    for (int i = num; i > 2; --i)
    {
-      T temp = sorted[i];
-      sorted[i] = sorted[1];
-      sorted[1] = temp;
+      swap(array, 1, i);
 
-      percolate_down(sorted, 1, i - 1);
+      percolate_down(array, 1, i - 1);
    }
-   for (int i = 0; i < num; i++)
-      array[i] = sorted[i + 1];
-   
-   delete[] sorted;
 }
 
+/*****************************************************
+* SWAP
+* Switches the values of two items in the heap
+* specified by their IDs
+****************************************************/
+template <class T>
+void swap(T array[], int a, int b)
+{
+   T temp = ITEM_AT(array, a);
+   ITEM_AT(array, a) = ITEM_AT(array, b);
+   ITEM_AT(array, b) = temp;
+}
 
 /*****************************************************
 * HEAPIFY
@@ -75,8 +84,10 @@ void percolate_down(T array[], int root, int lastIndex)
    while (root <= lastIndex)
    {
       // If the right child is larger, use that instead
-      if (child < lastIndex && array[GET_SIBLING(child)] > array[child])
+      //if (child < lastIndex && array[GET_SIBLING(child)] > array[child])
+      if (child < lastIndex && ITEM_AT(array, GET_SIBLING(child)) > ITEM_AT(array, child))
          child = GET_SIBLING(child);
+      
       // If we happen to be looking at a child index that's
       // too large, we're done; the root's moved down as far
       // as it can go
@@ -84,14 +95,15 @@ void percolate_down(T array[], int root, int lastIndex)
          break;
 
       // If the child is larger than the root
-      if (array[child] > array[root])
+      //if (array[child] > array[root])
+      if (ITEM_AT(array, child) > ITEM_AT(array, root))
       {
          // Swap them
-         T temp = array[child];
-         array[child] = array[root];
-         array[root] = temp;
+         swap(array, root, child);
+
          // Get the root's new location
          root = child;
+
          // Grab it's new left child (it's prior grandchild)
          child = GET_CHILD(root);
       }
