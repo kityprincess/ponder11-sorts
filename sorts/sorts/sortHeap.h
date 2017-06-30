@@ -18,6 +18,8 @@
 #define GET_PARENT(x) (x / 2) // Gets the ID for the parent of a given element
 #define IDX(x) (x - 1) // Translates an ID into the appropriate index into an array
 #define ITEM_AT(a, x) (a[IDX(x)]) // Looks up an item by ID from an array
+#define HEAD_ID 1 // ID of the heap's head item, i.e. its maximum value
+#define FIRST_CHILD_ID 2 // ID of the head item's left-child
 
 template <class T>
 void heapify(T array[], int lastIndex);
@@ -37,11 +39,11 @@ void sortHeap(T array[], int num)
 {
    heapify(array, num);
 
-   for (int i = num; i > 2; --i)
+   for (int i = num; i > FIRST_CHILD_ID; --i)
    {
-      swap(array, 1, i);
+      swap(array, HEAD_ID, i);
 
-      percolate_down(array, 1, i - 1);
+      percolate_down(array, HEAD_ID, i - 1);
    }
 }
 
@@ -65,7 +67,7 @@ void swap(T array[], int a, int b)
 template <class T>
 void heapify(T array[], int lastID)
 {
-   for (int root = GET_PARENT(lastID); root >= 1; --root)
+   for (int root = GET_PARENT(lastID); root >= HEAD_ID; --root)
    {
       percolate_down(array, root, lastID);
    }
