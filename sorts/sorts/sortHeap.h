@@ -63,11 +63,11 @@ void swap(T array[], int a, int b)
 * Rearrange array into max heap order
 ****************************************************/
 template <class T>
-void heapify(T array[], int lastIndex)
+void heapify(T array[], int lastID)
 {
-   for (int root = GET_PARENT(lastIndex); root >= 1; --root)
+   for (int root = GET_PARENT(lastID); root >= 1; --root)
    {
-      percolate_down(array, root, lastIndex);
+      percolate_down(array, root, lastID);
    }
 }
 
@@ -77,21 +77,21 @@ void heapify(T array[], int lastIndex)
 * Move an item down to its proper order in the heap
 ****************************************************/
 template <class T>
-void percolate_down(T array[], int root, int lastIndex)
+void percolate_down(T array[], int root, int lastID)
 {
    // Get the left child of the item
    int child = GET_CHILD(root);
-   while (root <= lastIndex)
+   while (root <= lastID)
    {
       // If the right child is larger, use that instead
-      //if (child < lastIndex && array[GET_SIBLING(child)] > array[child])
-      if (child < lastIndex && ITEM_AT(array, GET_SIBLING(child)) > ITEM_AT(array, child))
+      //if (child < lastID && array[GET_SIBLING(child)] > array[child])
+      if (child < lastID && ITEM_AT(array, GET_SIBLING(child)) > ITEM_AT(array, child))
          child = GET_SIBLING(child);
       
       // If we happen to be looking at a child index that's
       // too large, we're done; the root's moved down as far
       // as it can go
-      else if (child >= lastIndex)
+      else if (child >= lastID)
          break;
 
       // If the child is larger than the root
