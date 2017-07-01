@@ -25,15 +25,23 @@ void merge(T a[], int p, int q, int r)
    int iB = 0;
    int iC = 0;
 
-   for (int i = 0; i <= sizeB; i++)
+   for (int i = 0; i < sizeB; i++)
       b[i] = a[p+i];
 
-   for (int i = 0; i <= sizeC; i++)
-      c[i] = a[q+i];
+   for (int i = 0; i < sizeC; i++)
+      c[i] = a[q+i+1];
 
    for (int i = p; i <= r; i++)
    {
-      if (c[iC] > b[iB])
+      if (iB >= sizeB)
+      {
+         a[i] = c[iC++];
+      }
+      else if (iC >= sizeC)
+      {
+         a[i] = b[iB++];
+      }
+      else if (c[iC] > b[iB])
       {
          a[i] = b[iB];
          iB++;
