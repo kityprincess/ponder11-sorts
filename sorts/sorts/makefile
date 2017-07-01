@@ -1,7 +1,7 @@
 ###############################################################
 # Program:
 #     Week 11, Sorts
-#     Brother XXXXX, CS265
+#     Brother JonesL, CS265
 # Author:
 #     <your name here>
 # Summary:
