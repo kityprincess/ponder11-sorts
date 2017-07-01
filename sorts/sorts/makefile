@@ -3,11 +3,13 @@
 #     Week 11, Sorts
 #     Brother JonesL, CS265
 # Author:
-#     <your name here>
+#     Bryan Lopez    - 3 hours
+#     Kimberly Stowe - 5 hours
+#     Matthew Burr   - 6 hours
+#     Shayla Nelson  - 5 hours
 # Summary:
-#     <put a description here>
-# Time:
-#     <how long did it take to complete this program>?
+#     This program runs through 7 different sorts and compares
+#          their efficiency.
 ###############################################################
 
 ##############################################################

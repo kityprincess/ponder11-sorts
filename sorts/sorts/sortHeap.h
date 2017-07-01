@@ -3,7 +3,7 @@
  *    Week 11, Sort Heap
  *    Brother Helfrich, CS 235
  * Author:
- *    <your name>
+ *    Matthew Burr
  * Summary:
  *    This program will implement the Heap Sort
  ************************************************************************/

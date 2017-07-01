@@ -3,7 +3,7 @@
  *    Week 11, Sort Bubble
  *    Brother Helfrich, CS 235
  * Author:
- *    <your name>
+ *    Shayla Nelson
  * Summary:
  *    This program will implement the Bubble Sort
  ************************************************************************/

@@ -3,7 +3,7 @@
  *    Week 11, Sort Merge
  *    Brother Helfrich, CS 235
  * Author:
- *    <author>
+ *    Kimberly Stowe & Matthew Burr
  * Summary:
  *    This program will implement the Merge Sort
  ************************************************************************/
@@ -14,6 +14,9 @@
 /*****************************************************
  * SORT MERGE
  * Perform the merge sort
+ * p = starting index
+ * q = midpoint
+ * r = last index
  ****************************************************/
 template <class T>
 void merge(T a[], int p, int q, int r)

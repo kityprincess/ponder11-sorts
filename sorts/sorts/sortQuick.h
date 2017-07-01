@@ -3,7 +3,7 @@
  *    Week 11, Sort Quick
  *    Brother Helfrich, CS 235
  * Author:
- *    <author>
+ *    Bryan Lopez
  * Summary:
  *    This program will implement the Quick Sort.  Credit goes to 
  *    goes to our textbook 13.3 Quicksort.  
